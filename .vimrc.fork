@@ -1,0 +1,179 @@
+"==========================================
+" etaf customized  key mappings
+"==========================================
+"
+" F1 - F6 设置
+" F1 废弃这个键,防止调出系统帮助
+" F2 行号开关，用于鼠标复制代码用
+" F3 显示可打印字符开关
+" F4 换行开关
+" F7 粘贴模式paste_mode开关,用于有格式的代码粘贴
+" F6 语法开关，关闭语法可以加快大文件的展示
+
+" I can type :help on my own, thanks.  Protect your fat fingers from the evils of <F1>
+noremap <F1> <Esc>"
+
+""为方便复制，用<F2>开启/关闭行号显示:
+function! HideNumber()
+  if(&relativenumber == &number)
+    set relativenumber! number!
+  elseif(&number)
+    set number!
+  else
+    set relativenumber!
+  endif
+  set number?
+endfunc
+nnoremap <F2> :call HideNumber()<CR>
+nnoremap <F3> :set list! list?<CR>
+nnoremap <F4> :set wrap! wrap?<CR>
+              "set paste
+              "
+"set pastetoggle=<F5>            "    when in insert mode, press <F5> to go to
+                                "    paste mode, where you can paste mass data
+                                "    that won't be autoindented
+set pastetoggle=<F7> 
+
+" set F5 for compile and run c/cpp/python 
+"map <C-F5> : call CompileRunC()<CR>
+map <F5> : call CompileRunCpp()<CR>
+"map <F5>: call DebugCpp()<CR>
+"map <F6> : call RunPython()<CR>
+"map <C-F5> : call RunShell()<CR>
+
+func! CompileRunC()
+    exec "w"
+    exec "!gcc -std=c++11  -g -lboost_program_options -lpthread % -o %<"
+    exec "! ./%<"
+endfunc
+
+func! CompileRunCpp()
+    exec "w"
+    exec "!g++ -std=c++11 -g % -o %<"
+    exec "! ./%<"
+endfunc
+
+func! DebugCpp()
+    exec "w"
+    exec "!g++ % -o %< -g"
+    exec "!gdb %<"
+endfunc
+
+func! RunPython()
+    exec "w"
+    exec "!python %"
+endfunc
+
+func! RunShell()
+    exec "w"
+    exec "!sh -x %"
+endfunc
+
+" disbale paste mode when leaving insert mode
+au InsertLeave * set nopaste
+
+nnoremap <F6> :exec exists('syntax_on') ? 'syn off' : 'syn on'<CR>
+
+
+"Smart way to move between windows 分屏窗口移动
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+
+" Go to home and end using capitalized directions
+noremap H ^
+noremap L $
+
+
+"Map ; to : and save a million keystrokes
+" ex mode commands made easy 用于快速进入命令行
+nnoremap ; :
+
+
+" 命令行模式增强，ctrl - a到行首， -e 到行尾
+cnoremap <C-j> <t_kd>
+cnoremap <C-k> <t_ku>
+cnoremap <C-a> <Home>
+cnoremap <C-e> <End>
+
+" 搜索相关
+
+" Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
+map <space> /
+" 进入搜索Use sane regexes"
+nnoremap / /\v
+vnoremap / /\v
+
+"Keep search pattern at the center of the screen."
+nnoremap <silent> n nzz
+nnoremap <silent> N Nzz
+nnoremap <silent> * *zz
+nnoremap <silent> # #zz
+nnoremap <silent> g* g*zz
+
+" 去掉搜索高亮
+noremap <silent><leader>/ :nohls<CR>
+
+" --------tab/buffer相关
+
+"Use arrow key to change buffer"
+noremap <left> :bp<CR>
+noremap <right> :bn<CR>
+
+map <leader>tn :tabnew<cr>
+map <leader>to :tabonly<cr>
+map <leader>tc :tabclose<cr>
+map <leader>tm :tabmove
+map <leader>bd :bd<cr>
+" Opens a new tab with the current buffer's path
+" Super useful when editing files in the same directory
+map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
+
+" ------- 选中及操作改键
+
+"Reselect visual block after indent/outdent.调整缩进后自动选中，方便再次操作
+vnoremap < <gv
+vnoremap > >gv
+
+" y$ -> Y Make Y behave like other capitals
+map Y y$
+
+" select all
+map <Leader>sa ggVG"
+
+" select block
+nnoremap <leader>v V`}
+
+" w!! to sudo & write a file
+cmap w!! w !sudo tee >/dev/null %
+
+" kj 替换 Esc
+inoremap kj <Esc>
+
+" 滚动Speed up scrolling of the viewport slightly
+nnoremap <C-e> 2<C-e>
+nnoremap <C-y> 2<C-y>
+
+
+"Jump to start and end of line using the home row keys
+nmap t o<ESC>k
+nmap T O<ESC>j
+
+" Quickly close the current window
+nnoremap <leader>q :q<CR>
+
+" Swap implementations of ` and ' jump to markers
+" By default, ' jumps to the marked line, ` jumps to the marked line and
+" column, so swap them
+nnoremap ' `
+nnoremap ` '
+
+" remap U to <C-r> for easier redo
+nnoremap U <C-r>
+
+" Quickly edit/reload the vimrc file
+nmap <silent> <leader>ev :e $MYVIMRC<CR>
+nmap <silent> <leader>sv :so $MYVIMRC<CR>
+
+
