@@ -33,42 +33,6 @@ nnoremap <F4> :set wrap! wrap?<CR>
                                 "    paste mode, where you can paste mass data
                                 "    that won't be autoindented
 set pastetoggle=<F7> 
-
-" set F5 for compile and run c/cpp/python 
-"map <C-F5> : call CompileRunC()<CR>
-map <F5> : call CompileRunCpp()<CR>
-"map <F5>: call DebugCpp()<CR>
-"map <F6> : call RunPython()<CR>
-"map <C-F5> : call RunShell()<CR>
-
-func! CompileRunC()
-    exec "w"
-    exec "!gcc -std=c++11  -g -lboost_program_options -lpthread % -o %<"
-    exec "! %<"
-endfunc
-
-func! CompileRunCpp()
-    exec "w"
-    exec "!g++ -std=c++11 -g % -o %<"
-    exec "! %<"
-endfunc
-
-func! DebugCpp()
-    exec "w"
-    exec "!g++ % -o %< -g"
-    exec "!gdb %<"
-endfunc
-
-func! RunPython()
-    exec "w"
-    exec "!python %"
-endfunc
-
-func! RunShell()
-    exec "w"
-    exec "!sh -x %"
-endfunc
-
 " disbale paste mode when leaving insert mode
 au InsertLeave * set nopaste
 
@@ -176,4 +140,49 @@ nnoremap U <C-r>
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
+" 定义函数AutoSetFileHead，自动插入文件头
+autocmd BufNewFile *.sh,*.py,*.cpp exec ":call AutoSetFileHead()"
+function! AutoSetFileHead()
+    "如果文件类型为.sh文件
+    if &filetype == 'sh'
+        call setline(1, "\#!/bin/bash")
+    endif
+
+    "如果文件类型为python
+    if &filetype == 'python'
+        call setline(1, "\#!/usr/bin/env python")
+        call append(1, "\# encoding: utf-8")
+    endif
+
+    if &filetype == 'cpp'
+        call setline(1,"\#include<iostream>")
+        call setline(2,"\#include<cstdio>")
+        call setline(3,"\#include<cstring>")
+        call setline(4,"\#include<algorithm>")
+        call setline(5,"\#include<vector>")
+        call setline(6,"\#include<string>")
+        call setline(7,"\#include<map>")
+        call setline(8,"\#include<set>")
+        call setline(9,"\#include<stack>")
+        call setline(10,"\#include<queue>")
+        call setline(11,"\#include<limits.h>")
+        call setline(12,"\#include<unordered_map>")
+        call setline(13,"\#include<unordered_set>")
+        call setline(14,"\#include<cmath>")
+        call setline(15,"\#include<cstdlib>")
+        call setline(16,"using namespace std;")
+        call setline(17,"")
+        call setline(18,"int main()")
+        call setline(19,"{")
+        call setline(20,"    return 0;")
+        call setline(21,"}")
+    endif
+
+    normal G
+    normal o
+    normal o
+endfunc
+
+
+set t_ti= t_te=
 
