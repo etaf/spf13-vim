@@ -186,3 +186,4 @@ endfunc
 
 set t_ti= t_te=
 
+map <leader><space> :FixWhitespace<cr>
