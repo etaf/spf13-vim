@@ -187,3 +187,5 @@ endfunc
 set t_ti= t_te=
 
 map <leader><space> :FixWhitespace<cr>
+"remove the ... of each space
+set nolist
