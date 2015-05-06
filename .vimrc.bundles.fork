@@ -49,3 +49,7 @@ au Syntax * RainbowParenthesesLoadBraces
 Bundle 'LaTeX-Box-Team/LaTeX-Box'
 
 Bundle 'vim-latex-live-preview'
+
+Bundle 'etaf/cscope_maps.vim'
+Bundle 'vim-scripts/awk-support.vim'
+Bundle 'vim-scripts/awk.vim'
