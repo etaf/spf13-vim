@@ -80,7 +80,7 @@
     " endif
     filetype plugin indent on   " Automatically detect file types.
     syntax on                   " Syntax highlighting
-    set mouse=a                 " Automatically enable mouse usage
+    "set mouse=a                 " Automatically enable mouse usage
     set mousehide               " Hide the mouse cursor while typing
     scriptencoding utf-8
 
@@ -95,7 +95,7 @@
     " Most prefer to automatically switch to the current file directory when
     " a new buffer is opened; to prevent this behavior, add the following to
     " your .vimrc.before.local file:
-    "   let g:spf13_no_autochdir = 1
+    " let g:spf13_no_autochdir = 1
     if !exists('g:spf13_no_autochdir')
         autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
         " Always switch to the current file directory
@@ -158,7 +158,7 @@
 " Vim UI {
 
     if filereadable(expand("~/.vim/bundle/vim-colors-solarized/colors/solarized.vim"))
-        "let g:solarized_termcolors=256
+        let g:solarized_termcolors=256
         let g:solarized_termtrans=1
         let g:solarized_contrast="normal"
         let g:solarized_visibility="normal"
@@ -493,10 +493,10 @@
         set tags=./tags;/,~/.vimtags
 
         " Make tags placed in .git/tags file available in all levels of a repository
-        let gitroot = substitute(system('git rev-parse --show-toplevel'), '[\n\r]', '', 'g')
-        if gitroot != ''
-            let &tags = &tags . ',' . gitroot . '/.git/tags'
-        endif
+       " let gitroot = substitute(system('git rev-parse --show-toplevel'), '[\n\r]', '', 'g')
+        "if gitroot != ''
+            "let &tags = &tags . ',' . gitroot . '/.git/tags'
+        "endif
     " }
 
     " AutoCloseTag {
