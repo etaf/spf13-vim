@@ -82,8 +82,12 @@ noremap <silent><leader>/ :nohls<CR>
 " --------tab/buffer相关
 
 "Use arrow key to change buffer"
+"noremap <left> :bp<CR>
+"noremap <right> :bn<CR>
+"Use arrow key to change buffer"
 noremap <left> :bp<CR>
 noremap <right> :bn<CR>
+
 
 map <leader>tn :tabnew<cr>
 map <leader>to :tabonly<cr>
@@ -214,4 +218,4 @@ set csre
 
 
 nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
-set t_BE=0
+"set t_BE=0

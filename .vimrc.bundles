@@ -96,7 +96,7 @@
     if !exists('g:spf13_bundle_groups')
         "let g:spf13_bundle_groups=['general', 'writing', 'neocomplcache', 'programming', 'php', 'ruby', 'python', 'javascript', 'html', 'misc']
         "let g:spf13_bundle_groups=['general', 'writing', 'programming', 'python', 'misc']
-        let g:spf13_bundle_groups=['general', 'writing',  'programming',  'python', 'misc', 'youcompleteme', 'javascript', 'html']
+        let g:spf13_bundle_groups=['general', 'writing', 'programming', 'youcompleteme', 'javascript']
     endif
 
     " To override all the included bundles, add the following to your
@@ -109,15 +109,15 @@
             Bundle 'scrooloose/nerdtree'
             Bundle 'altercation/vim-colors-solarized'
             "Bundle 'spf13/vim-colors'
-            Bundle 'tpope/vim-surround'
+            "Bundle 'tpope/vim-surround'
             Bundle 'tpope/vim-repeat'
             Bundle 'spf13/vim-autoclose'
             
-            Bundle 'kien/ctrlp.vim'
-            Bundle 'tacahiroy/ctrlp-funky'
-            Bundle 'terryma/vim-multiple-cursors'
-            Bundle 'vim-scripts/sessionman.vim'
-            Bundle 'matchit.zip'
+            "Bundle 'kien/ctrlp.vim'
+            "Bundle 'tacahiroy/ctrlp-funky'
+            "Bundle 'terryma/vim-multiple-cursors'
+            "Bundle 'vim-scripts/sessionman.vim'
+            "Bundle 'matchit.zip'
             if (has("python") || has("python3")) && exists('g:spf13_use_powerline') && !exists('g:spf13_use_old_powerline')
                 Bundle 'Lokaltog/powerline', {'rtp':'/powerline/bindings/vim'}
             elseif exists('g:spf13_use_powerline') && exists('g:spf13_use_old_powerline')
@@ -127,7 +127,7 @@
                 Bundle 'vim-airline/vim-airline-themes'
             endif
             Bundle 'bling/vim-bufferline'
-            Bundle 'Lokaltog/vim-easymotion'
+            "Bundle 'Lokaltog/vim-easymotion'
             Bundle 'jistr/vim-nerdtree-tabs'
             Bundle 'flazz/vim-colorschemes'
             Bundle 'mbbill/undotree'
@@ -163,6 +163,8 @@
             Bundle 'scrooloose/nerdcommenter'
             Bundle 'tpope/vim-commentary'
             Bundle 'godlygeek/tabular'
+""            Bundle 'ludovicchabant/vim-gutentags'
+""            Bundle 'skywind3000/vim-preview'
             if executable('ctags')
                 Bundle 'majutsushi/tagbar'
             endif
@@ -205,7 +207,7 @@
     " Python {
         if count(g:spf13_bundle_groups, 'python')
             " Pick either python-mode or pyflakes & pydoc
-            Bundle 'klen/python-mode'
+            " Bundle 'klen/python-mode'
             Bundle 'yssource/python.vim'
             Bundle 'python_match.vim'
             Bundle 'pythoncomplete'
@@ -280,7 +282,7 @@
         if count(g:spf13_bundle_groups, 'misc')
             Bundle 'wting/rust.vim'
             Bundle 'tpope/vim-markdown'
-            Bundle 'spf13/vim-preview'
+            "Bundle 'spf13/vim-preview'
             Bundle 'tpope/vim-cucumber'
             Bundle 'cespare/vim-toml'
             Bundle 'quentindecock/vim-cucumber-align-pipes'

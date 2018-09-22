@@ -1,0 +1,44 @@
+" set F5 for compile and run c/cpp/python 
+"map <C-F5> : call CompileRunC()<CR>
+map <F5> : call CompileRunCpp()<CR>
+"map <F5>: call DebugCpp()<CR>
+"map <F6> : call RunPython()<CR>
+map <F6> : call RunShell()<CR>
+
+func! CompileRunC()
+    exec "w"
+    exec "!gcc -std=c++11  -g -lboost_program_options -lpthread -lboost_system -lboost_filesystem % -o %<"
+    exec "! ./%<"
+endfunc
+
+func! CompileRunCpp()
+    exec "w"
+    "exec "!g++ -std=c++11  % -lpthread -g -lpthread -lboost_thread  -o %<"
+    exec "!g++ -std=c++11  %  -o %<"
+    exec "! ./%<"
+endfunc
+
+func! DebugCpp()
+    exec "w"
+    exec "!g++ % -o %< -g"
+    exec "!gdb %<"
+endfunc
+
+func! RunPython()
+    exec "w"
+    exec "!python %"
+endfunc
+
+func! RunShell()
+    exec "w"
+    "exec "!sh -x %"
+    exec "!sh  %"
+endfunc
+
+nnoremap  <F10> : call RunPython()<CR>
+
+set noswapfile
+set mouse=a
+
+let $GTAGSLABEL = 'native-pygments'
+let $GTAGSCONF = '/home/xinan.lxa/.globalrc'
